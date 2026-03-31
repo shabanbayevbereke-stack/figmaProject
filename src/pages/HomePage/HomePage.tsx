@@ -1,6 +1,7 @@
 export function HomePage() {
-    return (
-        <>
-        </>
-    )
+  return (
+    <>
+      <h1>домашняя страница</h1>
+    </>
+  );
 }
