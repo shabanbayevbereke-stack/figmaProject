@@ -1,7 +1,7 @@
 function App() {
   return (
     <>
-      <p>пустой проект</p>
+      <h1 className="text-4xl font-bold text-blue-600">Проверка Tailwind</h1>
     </>
   );
 }
