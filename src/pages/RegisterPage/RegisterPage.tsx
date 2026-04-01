@@ -4,7 +4,7 @@ import { Input } from "../../ui-kit/Input";
 import { Button } from "../../ui-kit/Button";
 import { Toggle } from "../../ui-kit/Toggle";
 
-export function LoginPage() {
+export function RegisterPage() {
   const navigation = useNavigate();
 
   return (
@@ -22,7 +22,9 @@ export function LoginPage() {
             </div>
           </div>
 
-          <h1 className="text-3xl font-bold text-gray-900 mb-10">вход</h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-10">
+            Ругистрация
+          </h1>
 
           <div className="space-y-6">
             <Input label="Email" type="email" placeholder="введите эмаил" />
@@ -31,19 +33,18 @@ export function LoginPage() {
               type="password"
               placeholder="Введите пароль"
             />
+            <Input
+              label="Password repid"
+              type="password"
+              placeholder="Введите пароль повторно"
+            />
           </div>
 
           <div className="flex items-center justify-between mt-6 mb-8">
             <Toggle label="Запомни меня" />
-            <a
-              href="#"
-              className="text-sm font-semibold text-blue-600 hover:text-blue-700"
-            >
-              Забыли пароль?
-            </a>
           </div>
 
-          <Button onClick={() => navigation("/")}>войти</Button>
+          <Button onClick={() => navigation("/")}>Зарегестрироватся</Button>
 
           <div className="relative my-8">
             <div className="absolute inset-0 flex items-center">
@@ -60,16 +61,16 @@ export function LoginPage() {
               className="w-7 h-7"
               alt="G"
             />
-            <span>Зайти через гугл</span>
+            <span>Зарегестрироватся через гугл</span>
           </button>
 
           <p className="text-center text-gray-500 text-sm mt-10">
-            Нет акаунта?{" "}
+            Есть акаунт?{" "}
             <a
-              onClick={() => navigation("/register")}
+              onClick={() => navigation("/login")}
               className="text-blue-600 font-bold hover:underline"
             >
-              Зарегестрируйтесь сейчас
+              Войти в акаунт
             </a>
           </p>
         </div>
