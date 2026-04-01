@@ -22,6 +22,9 @@ export function Meinheder() {
           <li>
             <a onClick={() => navigate("/user")}>User</a>
           </li>
+          <li>
+            <a onClick={() => navigate("/login")}>выйти</a>
+          </li>
         </ul>
       </header>
       <main>
