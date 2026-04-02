@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import backgroundImage from "@/public/beach.png";
-
-import googleImage from "@/public/googleImage.png";
+import backgroundImage from "@pablic/beach.png";
+import googleImage from "@pablic/googleImage.png";
 import { MyInput } from "@/shared/uiKit/MyInput";
 import { MyButton } from "@/shared/uiKit/MyButton";
 import { MyToggle } from "@/shared/uiKit/MyToggle";
@@ -16,8 +15,8 @@ export function LoginPage() {
         style={{ backgroundImage: `url(${backgroundImage})` }}
       ></div>
 
-      <div className="bg-white flex flex-col p-10 md:p-20 justify-between">
-        <form className="w-full  mx-auto md:mx-0">
+      <div className="bg-white flex flex-col items-center justify-between my-10">
+        <form className="w-[360px] mx-auto md:mx-0">
           <div className="flex items-center space-x-3 mb-12">
             <div className="w-10 h-10 bg-red-900 rounded-full flex items-center justify-center shadow-md text-white font-bold">
               CH
@@ -56,7 +55,7 @@ export function LoginPage() {
             </div>
           </div>
 
-          <button className="w-full bg-[#2D2E2E] hover:bg-black text-white font-semibold py-4 rounded-xl flex items-center justify-center space-x-3 transition-all">
+          <button className="w-full bg-[#333333] hover:bg-black text-white font-semibold py-4 rounded-xl flex items-center justify-center space-x-3 transition-all">
             <div
               style={{ backgroundImage: `url(${googleImage})` }}
               className="w-5 h-5"
@@ -74,6 +73,10 @@ export function LoginPage() {
             </a>
           </p>
         </form>
+        <div className="flex w-[360px] justify-between">
+          <a href="#">типо ссылка</a>
+          <p>сайт 2026 года</p>
+        </div>
       </div>
     </div>
   );

@@ -1,7 +1,10 @@
-export function MyInput({ label, ...props }: { label: string } & React.InputHTMLAttributes<HTMLInputElement>) {
+export function MyInput({
+  label,
+  ...props
+}: { label: string } & React.InputHTMLAttributes<HTMLInputElement>) {
   return (
     <div className="w-full">
-      <label className="block text-xs font-semibold text-gray-500 mb-2 ml-1 uppercase tracking-wider">
+      <label className="block text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wider ml-4">
         {label}
       </label>
       <input
