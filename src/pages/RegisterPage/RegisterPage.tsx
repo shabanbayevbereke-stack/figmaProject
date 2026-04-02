@@ -1,9 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import backgroundImage from "/beach.png";
 import googleImage from "/googleImage.png";
-import { MyInput } from "@/shared/uiKit/MyInput";
-import { MyButton } from "@/shared/uiKit/MyButton";
-import { MyToggle } from "@/shared/uiKit/MyToggle";
+import { RegisterForm } from "./component/RegisterForm";
 
 export function RegisterPage() {
   const navigation = useNavigate();
@@ -29,25 +27,7 @@ export function RegisterPage() {
             Регистрация
           </h1>
 
-          <div className="space-y-6">
-            <MyInput label="Почта" type="email" placeholder="введите эмаил" />
-            <MyInput
-              label="Пароль"
-              type="password"
-              placeholder="Введите пароль"
-            />
-            <MyInput
-              label="Повторите пароль"
-              type="password"
-              placeholder="Введите пароль повторно"
-            />
-          </div>
-
-          <div className="mt-6 mb-8 flex items-center justify-between">
-            <MyToggle label="Запомни меня" />
-          </div>
-
-          <MyButton onClick={() => navigation("/")}>Зарегестрироватся</MyButton>
+          <RegisterForm />
 
           <div className="relative my-8">
             <div className="absolute inset-0 flex items-center">
@@ -58,7 +38,7 @@ export function RegisterPage() {
             </div>
           </div>
 
-          <button className="flex w-full items-center justify-center space-x-3 rounded-xl bg-[#2D2E2E] py-4 font-semibold text-white transition-all hover:bg-black">
+          <button className="flex w-full items-center justify-center space-x-3 rounded-xl bg-[#2D2E2E] py-4 font-semibold text-white transition-all hover:bg-black focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:outline-none  peer-focus:ring-2">
             <div
               style={{
                 backgroundImage: `url(${googleImage})`,
