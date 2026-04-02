@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import backgroundImage from "../../public/beach.png";
+import backgroundImage from "@/public/beach.png";
 
-import googleImage from "../../public/googleImage.png";
-import { MyInput } from "../../shared/ui-kit/MyInput";
-import { MyButton } from "../../shared/ui-kit/MyButton";
-import { MyToggle } from "../../shared/ui-kit/MyToggle";
+import googleImage from "@/public/googleImage.png";
+import { MyInput } from "@/shared/uiKit/MyInput";
+import { MyButton } from "@/shared/uiKit/MyButton";
+import { MyToggle } from "@/shared/uiKit/MyToggle";
 
 export function LoginPage() {
   const navigation = useNavigate();
