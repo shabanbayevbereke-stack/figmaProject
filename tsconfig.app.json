@@ -26,7 +26,6 @@
 
     "paths": {
       "@/*": ["./src/*"],
-      "pablic/*":["./pablic/*"]
     }
   },
   "include": ["src"]

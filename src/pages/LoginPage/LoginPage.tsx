@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import backgroundImage from "@pablic/beach.png";
-import googleImage from "@pablic/googleImage.png";
+import backgroundImage from "/beach.png";
+import googleImage from "/googleImage.png";
 import { MyInput } from "@/shared/uiKit/MyInput";
 import { MyButton } from "@/shared/uiKit/MyButton";
 import { MyToggle } from "@/shared/uiKit/MyToggle";
@@ -9,21 +9,21 @@ export function LoginPage() {
   const navigation = useNavigate();
 
   return (
-    <div className="min-h-screen w-full grid grid-cols-1 md:grid-cols-[1fr_456px]">
+    <div className="grid min-h-screen w-full grid-cols-1 md:grid-cols-[1fr_456px]">
       <div
-        className="hidden md:block bg-cover bg-center"
+        className="hidden bg-cover bg-center md:block"
         style={{ backgroundImage: `url(${backgroundImage})` }}
       ></div>
 
-      <div className="bg-white flex flex-col items-center justify-between my-10">
-        <form className="w-[360px] mx-auto md:mx-0">
-          <div className="flex items-center space-x-3 mb-12">
-            <div className="w-10 h-10 bg-red-900 rounded-full flex items-center justify-center shadow-md text-white font-bold">
+      <div className="my-10 flex flex-col items-center justify-between bg-white">
+        <form className="mx-auto w-90 md:mx-0">
+          <div className="mb-12 flex items-center space-x-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-red-900 font-bold text-white shadow-md">
               CH
             </div>
           </div>
 
-          <h1 className="text-3xl font-bold text-gray-900 mb-10">Вход</h1>
+          <h1 className="mb-10 text-3xl font-bold text-gray-900">Вход</h1>
 
           <div className="space-y-6">
             <MyInput label="Почта" type="email" placeholder="введите эмаил" />
@@ -34,7 +34,7 @@ export function LoginPage() {
             />
           </div>
 
-          <div className="flex items-center justify-between mt-6 mb-8">
+          <div className="mt-6 mb-8 flex items-center justify-between">
             <MyToggle label="Запомни меня" />
             <a
               href="#"
@@ -55,25 +55,25 @@ export function LoginPage() {
             </div>
           </div>
 
-          <button className="w-full bg-[#333333] hover:bg-black text-white font-semibold py-4 rounded-xl flex items-center justify-center space-x-3 transition-all">
+          <button className="flex w-full items-center justify-center space-x-3 rounded-xl bg-[#333333] py-4 font-semibold text-white transition-all hover:bg-black">
             <div
               style={{ backgroundImage: `url(${googleImage})` }}
-              className="w-5 h-5"
+              className="h-5 w-5"
             />
             <span>Зайти через гугл</span>
           </button>
 
-          <p className="text-center text-gray-500 text-sm mt-10">
+          <p className="mt-10 text-center text-sm text-gray-500">
             Нет акаунта?{" "}
             <a
               onClick={() => navigation("/register")}
-              className="text-blue-600 font-bold hover:underline"
+              className="hover:pointer-coarse: font-bold text-blue-600 hover:underline"
             >
               Зарегестрируйтесь сейчас
             </a>
           </p>
         </form>
-        <div className="flex w-[360px] justify-between">
+        <div className="flex w-90 justify-between">
           <a href="#">типо ссылка</a>
           <p>сайт 2026 года</p>
         </div>
