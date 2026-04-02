@@ -1,4 +1,4 @@
-export function Toggle({ label }: { label: string }) {
+export function MyToggle({ label }: { label: string }) {
   return (
     <label className="flex items-center cursor-pointer group">
       <div className="relative">

@@ -4,7 +4,7 @@ import { EboutUsPage } from "./pages/EboutUsPage/EboutUsPage";
 import { ItemPage } from "./pages/ItemPage/ItemPage";
 import { SellPage } from "./pages/SellPage/SellPage";
 import { UserPage } from "./pages/UserPage/UserPage";
-import { Meinheder } from "./component/meinheder/Meinheder";
+import { Meinheder } from "./features/mainHeader/MainHeader";
 import { LoginPage } from "./pages/LoginPage/LoginPage";
 import { RegisterPage } from "./pages/RegisterPage/RegisterPage";
 
