@@ -7,9 +7,11 @@ import { zodResolver } from "@hookform/resolvers/zod/src/index.js";
 import { useForm } from "react-hook-form";
 
 const schema = zod.object({
-  email: zod.string().email('неверный формат email'),
-  password: zod.string().min(6, 'Пароль должен содержать не менее 6 символов'),
-  confirmPassword: zod.string().min(6, 'Пароль должен содержать не менее 6 символов'),
+  email: zod.string().email("неверный формат email"),
+  password: zod.string().min(6, "Пароль должен содержать не менее 6 символов"),
+  confirmPassword: zod
+    .string()
+    .min(6, "Пароль должен содержать не менее 6 символов"),
 });
 
 type RegisterFormData = zod.infer<typeof schema>;
