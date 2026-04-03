@@ -1,3 +1,4 @@
+import { LanguageSwitcher } from "@/shared/uiKit/LanguageSwitcher";
 import { Outlet, useNavigate } from "react-router-dom";
 
 export function Meinheder() {
@@ -38,6 +39,7 @@ export function Meinheder() {
             </a>
           </li>
         </ul>
+        <LanguageSwitcher />
       </header>
       <main>
         <Outlet />

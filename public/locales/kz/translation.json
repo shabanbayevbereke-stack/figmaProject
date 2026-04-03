@@ -1,0 +1,49 @@
+{
+  "auth": {
+    "login": {
+      "title": "Кіру",
+      "submit": "Кіру",
+      "google_login": "Google арқылы кіру",
+      "register_link": "Қазір тіркеліңіз",
+      "akaunt_ask": "Аккаунтыңыз жоқ па?",
+      "forgot_password": "Құпия сөзді ұмыттыңыз ба?",
+      "remember_me": "Мені есте сақта"
+    },
+
+    "register": {
+      "title": "Тіркелу",
+      "submit": "Тіркелу",
+      "google_login": "Google арқылы тіркелу",
+      "login_link": "Кіру",
+      "remember_me": "Мені есте сақта",
+      "akaunt_ask": "Аккаунтыңыз бар ма?"
+    },
+
+    "validation": {
+      "email_required": "Email толтыру міндетті",
+      "password_repeat": "Құпия сөзді қайта енгізіңіз"
+    },
+
+    "hints": {
+      "email": "почта kz",
+      "password": "пароль kz",
+      "email_input": "Email енгізіңіз",
+      "password_input": "Құпия сөз енгізіңіз",
+      "password_repeat": "Құпия сөзді қайталаңыз"
+    },
+
+    "error": {
+      "password_requirements": "Құпия сөз кем дегенде 6 таңбадан тұруы керек",
+      "wrong_email": "Email табылмады",
+      "wrong_password": "Құпия сөз дұрыс емес",
+      "invalid_email": "Жарамсыз email форматы",
+      "invalid_credentials": "Жарамсыз деректер",
+      "passwords_do_not_match": "Құпия сөздер сәйкес емес"
+    },
+
+    "footer": {
+      "made_age": "2026 жылы жасалған",
+      "disabled_link": "Сілтеме өшірілген"
+    }
+  }
+}

@@ -5,25 +5,27 @@ import { useNavigate } from "react-router";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
-const schema = yup.object({
-  email: yup
-    .string()
-    .email("Неверный формат email")
-    .required("Email обязателен"),
-  password: yup
-    .string()
-    .min(6, "Пароль должен содержать не менее 6 символов")
-    .required("Пароль обязателен"),
-  confirmPassword: yup
-    .string()
-    .oneOf([yup.ref("password")], "Пароли не совпадают")
-    .required("Подтверждение пароля обязательно"),
-});
-
-type RegisterFormData = yup.InferType<typeof schema>;
 
 export function RegisterForm() {
+  const { t } = useTranslation();
+  const schema = yup.object({
+    email: yup
+      .string()
+      .email(t("auth.error.invalid_email"))
+      .required(t("auth.error.invalid_credentials")),
+    password: yup
+      .string()
+      .min(6, t("auth.error.password_requirements"))
+      .required(t("auth.error.invalid_credentials")),
+    confirmPassword: yup
+      .string()
+      .oneOf([yup.ref("password")], t("auth.error.passwords_do_not_match"))
+      .required(t("auth.error.invalid_credentials")),
+  });
+  
+  type RegisterFormData = yup.InferType<typeof schema>;
   const navigate = useNavigate();
   const {
     register,
@@ -45,33 +47,35 @@ export function RegisterForm() {
     <>
       <div className="space-y-6">
         <MyInput
-          label="Почта"
+          label={t("auth.hints.email")}
           type="email"
-          placeholder="введите эмаил"
+          placeholder={t("auth.hints.email_input")}
           {...register("email")}
           error={errors.email?.message}
         />
         <MyInput
-          label="Пароль"
+          label={t("auth.hints.password")}
           type="password"
-          placeholder="Введите пароль"
+          placeholder={t("auth.hints.password_input")}
           {...register("password")}
           error={errors.password?.message}
         />
         <MyInput
-          label="Повторите пароль"
+          label={t("auth.hints.password_repeat")}
           type="password"
-          placeholder="Введите пароль повторно"
+          placeholder={t("auth.hints.confirm_password_input")}
           {...register("confirmPassword")}
           error={errors.confirmPassword?.message}
         />
       </div>
 
       <div className="mt-6 mb-8 flex items-center justify-between">
-        <MyToggle label="Запомни меня" />
+        <MyToggle label={t("auth.register.remember_me")} />
       </div>
 
-      <MyButton onClick={handleSubmit(onSubmit)}>Зарегестрироватся</MyButton>
+      <MyButton onClick={handleSubmit(onSubmit)}>
+        {t("auth.register.submit")}
+      </MyButton>
     </>
   );
 }

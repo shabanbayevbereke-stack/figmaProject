@@ -1,0 +1,49 @@
+{
+  "auth": {
+    "login": {
+      "title": "Sign In",
+      "submit": "Login",
+      "google_login": "Sign in with Google",
+      "register_link": "Register now",
+      "akaunt_ask": "Don't have an account?",
+      "forgot_password": "Forgot password?",
+      "remember_me": "Remember me"
+    },
+
+    "register": {
+      "title": "Register",
+      "submit": "Register",
+      "google_login": "Register with Google",
+      "login_link": "Sign In",
+      "remember_me": "Remember me",
+      "akaunt_ask": "Already have an account?"
+    },
+
+    "validation": {
+      "email_required": "Email is required",
+      "password_repeat": "Please re-enter your password"
+    },
+
+    "hints": {
+      "email": "email",
+      "password": "password",
+      "email_input": "Enter your email",
+      "password_input": "Enter your password",
+      "password_repeat": "Repeat your password"
+    },
+
+    "error": {
+      "password_requirements": "Password must be at least 6 characters long",
+      "wrong_email": "Email not found",
+      "wrong_password": "Incorrect password",
+      "invalid_email": "Invalid email format",
+      "invalid_credentials": "Invalid credentials",
+      "passwords_do_not_match": "Passwords do not match"
+    },
+
+    "footer": {
+      "made_age": "Made in 2026",
+      "disabled_link": "Link disabled"
+    }
+  }
+}

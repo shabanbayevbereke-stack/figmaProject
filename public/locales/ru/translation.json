@@ -1,0 +1,54 @@
+{
+  "auth": {
+    "login": {
+      "title": "Вход",
+      "submit": "Войти",
+      "google_login": "Войти через Google",
+      "register_link": "Зарегестрируйтесь сейчас",
+      "forgot_password": "Забыли пароль?",
+      "remember_me": "Запомни меня",
+      "akaunt_ask": "Нет аккаунта?"
+    },
+
+    "register": {
+      "title": "Регистрация",
+      "submit": "Зарегестрироватся",
+      "google_login": "Зарегестрироватся через Google",
+      "login_link": "Войти",
+      "remember_me": "Запомни меня",
+      "akaunt_ask": "Уже есть аккаунт?"
+    },
+
+    "validation": {
+      "confirm_password": "Подтвердите пароль",
+      "email_placeholder": "Введите email",
+      "password_placeholder": "Введите пароль",
+      "confirm_password_placeholder": "Введите пароль повторно",
+      "email_required": "Email обязателен",
+      "password_repeat": "Пожалуйста, повторно введите свой пароль"
+    },
+
+    "hints": {
+      "email": "почта",
+      "password": "пароль",
+      "password_repeat": "Повторите пароль",
+      "email_input": "Введите ваш email",
+      "password_input": "Введите ваш пароль",
+      "confirm_password_input": "Подтвердите ваш пароль"
+    },
+
+    "error": {
+      "password_requirements": "Длина пароля не менее 6 символов",
+      "wrong_email": "Email не найден",
+      "wrong_password": "Неверный пароль",
+      "invalid_email": "Неверный формат email",
+      "invalid_credentials": "Неверные учетные данные",
+      "passwords_do_not_match": "Пароли не совпадают"
+    },
+
+    "footer": {
+      "made_age": "Сделано в 2026 году",
+      "disabled_link": "Ссылка отключена"
+    }
+  }
+}

@@ -2,26 +2,26 @@ import { MyButton } from "@/shared/uiKit/MyButton";
 import { MyInput } from "@/shared/uiKit/MyInput";
 import { MyToggle } from "@/shared/uiKit/MyToggle";
 import { useNavigate } from "react-router-dom";
-import googleImage from "/googleImage.png";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { dataUsers } from "@/dataBaze/users";
-
-const loginSchema = yup.object({
-  email: yup
-    .string()
-    .email("Неверный формат email")
-    .required("Email обязателен"),
-  password: yup
-    .string()
-    .min(6, "Пароль должен содержать не менее 6 символов")
-    .required("Пароль обязателен"),
-});
-
-type LoginFormData = yup.InferType<typeof loginSchema>;
+import { useTranslation } from "react-i18next";
 
 export function LoginForm() {
+  const { t } = useTranslation();
+  const loginSchema = yup.object({
+    email: yup
+      .string()
+      .email(t("auth.error.invalid_email"))
+      .required(t("auth.error.invalid_credentials")),
+    password: yup
+      .string()
+      .min(6, t("auth.error.password_requirements"))
+      .required(t("auth.error.invalid_credentials")),
+  });
+
+  type LoginFormData = yup.InferType<typeof loginSchema>;
   const navigate = useNavigate();
   const {
     register,
@@ -43,7 +43,7 @@ export function LoginForm() {
     } else {
       console.log("Неверный email или пароль");
       setError("email", { message: "Неверный данные" });
-      setError("password", { message: "Неверный данные" }); 
+      setError("password", { message: "Неверный данные" });
       return;
     }
     console.log("Данные формы:", data);
@@ -52,32 +52,34 @@ export function LoginForm() {
     <>
       <div className="space-y-6">
         <MyInput
-          label="Почта"
+          label={t("auth.hints.email")}
           type="email"
-          placeholder="введите эмаил"
+          placeholder={t("auth.hints.email_input")}
           {...register("email")}
           error={errors.email?.message}
         />
         <MyInput
-          label="Пароль"
+          label={t("auth.hints.password")}
           type="password"
-          placeholder="Введите пароль"
+          placeholder={t("auth.hints.password_input")}
           {...register("password")}
           error={errors.password?.message}
         />
       </div>
 
       <div className="mt-6 mb-8 flex items-center justify-between">
-        <MyToggle label="Запомни меня" />
+        <MyToggle label={t("auth.login.remember_me")} />
         <a
           href="#"
           className="text-sm font-semibold text-blue-600 hover:text-blue-700"
         >
-          Забыли пароль?
+          {t("auth.login.forgot_password")}
         </a>
       </div>
 
-      <MyButton onClick={handleSubmit(onSubmit)}>войти</MyButton>
+      <MyButton onClick={handleSubmit(onSubmit)}>
+        {t("auth.login.submit")}
+      </MyButton>
 
       <div className="relative my-8">
         <div className="absolute inset-0 flex items-center">
@@ -87,14 +89,6 @@ export function LoginForm() {
           <span className="bg-white px-2 text-gray-400" />
         </div>
       </div>
-
-      <button className="flex w-full items-center justify-center space-x-3 rounded-xl bg-[#333333] py-4 font-semibold text-white transition-all hover:bg-black focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none  peer-focus:ring-2 peer-focus:ring-white peer-focus:ring-offset-2 peer-focus:outline-none ">
-        <div
-          style={{ backgroundImage: `url(${googleImage})` }}
-          className="h-5 w-5"
-        />
-        <span>Зайти через гугл</span>
-      </button>
     </>
   );
 }
