@@ -29,7 +29,8 @@
       "password": "пароль kz",
       "email_input": "Email енгізіңіз",
       "password_input": "Құпия сөз енгізіңіз",
-      "password_repeat": "Құпия сөзді қайталаңыз"
+      "password_repeat": "Құпия сөзді қайталаңыз",
+      "confirm_password_input": "Құпия сөзді растаңыз"
     },
 
     "error": {

@@ -29,7 +29,8 @@
       "password": "password",
       "email_input": "Enter your email",
       "password_input": "Enter your password",
-      "password_repeat": "Repeat your password"
+      "password_repeat": "Repeat your password",
+      "confirm_password_input": "Confirm your password"
     },
 
     "error": {
