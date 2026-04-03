@@ -6,6 +6,7 @@ import googleImage from "/googleImage.png";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import { dataUsers } from "@/dataBaze/users";
 
 const loginSchema = yup.object({
   email: yup
@@ -25,14 +26,27 @@ export function LoginForm() {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm<LoginFormData>({
     resolver: yupResolver(loginSchema),
   });
 
   const onSubmit = (data: LoginFormData) => {
+    if (
+      dataUsers.some(
+        (user) => user.email === data.email && user.password === data.password,
+      )
+    ) {
+      console.log("Вход прошел успешно");
+      navigate("/");
+    } else {
+      console.log("Неверный email или пароль");
+      setError("email", { message: "Неверный данные" });
+      setError("password", { message: "Неверный данные" }); 
+      return;
+    }
     console.log("Данные формы:", data);
-    navigate("/");
   };
   return (
     <>
