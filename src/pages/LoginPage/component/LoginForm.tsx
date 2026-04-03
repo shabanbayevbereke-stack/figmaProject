@@ -3,16 +3,22 @@ import { MyInput } from "@/shared/uiKit/MyInput";
 import { MyToggle } from "@/shared/uiKit/MyToggle";
 import { useNavigate } from "react-router-dom";
 import googleImage from "/googleImage.png";
-import * as zod from "zod";
-import { zodResolver } from "@hookform/resolvers/zod/src/index.js";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 
-const loginSchema = zod.object({
-  email: zod.string().email("Неверный формат email"),
-  password: zod.string().min(6, "Пароль должен содержать не менее 6 символов"),
+const loginSchema = yup.object({
+  email: yup
+    .string()
+    .email("Неверный формат email")
+    .required("Email обязателен"),
+  password: yup
+    .string()
+    .min(6, "Пароль должен содержать не менее 6 символов")
+    .required("Пароль обязателен"),
 });
 
-type LoginFormData = zod.infer<typeof loginSchema>;
+type LoginFormData = yup.InferType<typeof loginSchema>;
 
 export function LoginForm() {
   const navigate = useNavigate();
@@ -21,7 +27,7 @@ export function LoginForm() {
     handleSubmit,
     formState: { errors },
   } = useForm<LoginFormData>({
-    resolver: zodResolver(loginSchema),
+    resolver: yupResolver(loginSchema),
   });
 
   const onSubmit = (data: LoginFormData) => {

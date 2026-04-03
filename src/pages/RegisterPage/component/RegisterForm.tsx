@@ -2,19 +2,26 @@ import { MyButton } from "@/shared/uiKit/MyButton";
 import { MyInput } from "@/shared/uiKit/MyInput";
 import { MyToggle } from "@/shared/uiKit/MyToggle";
 import { useNavigate } from "react-router";
-import * as zod from "zod";
-import { zodResolver } from "@hookform/resolvers/zod/src/index.js";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 
-const schema = zod.object({
-  email: zod.string().email("неверный формат email"),
-  password: zod.string().min(6, "Пароль должен содержать не менее 6 символов"),
-  confirmPassword: zod
+const schema = yup.object({
+  email: yup
     .string()
-    .min(6, "Пароль должен содержать не менее 6 символов"),
+    .email("Неверный формат email")
+    .required("Email обязателен"),
+  password: yup
+    .string()
+    .min(6, "Пароль должен содержать не менее 6 символов")
+    .required("Пароль обязателен"),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref("password")], "Пароли не совпадают")
+    .required("Подтверждение пароля обязательно"),
 });
 
-type RegisterFormData = zod.infer<typeof schema>;
+type RegisterFormData = yup.InferType<typeof schema>;
 
 export function RegisterForm() {
   const navigate = useNavigate();
@@ -23,7 +30,7 @@ export function RegisterForm() {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(schema),
+    resolver: yupResolver(schema),
   });
 
   const onSubmit = (data: RegisterFormData) => {
