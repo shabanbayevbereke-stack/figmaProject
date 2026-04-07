@@ -3,7 +3,7 @@ import googleImage from "/googleImage.jpg";
 import backgroundImage from "/beach.jpg";
 import { LoginForm } from "./component/LoginForm";
 import { useTranslation } from "react-i18next";
-import { LanguageSwitcher } from "@/shared/uiKit/LanguageSwitcher";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 export function LoginPage() {
   const navigate = useNavigate();

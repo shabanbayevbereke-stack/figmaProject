@@ -1,7 +1,7 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export function SideBar() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const linkStyle = `flex items-center 
     px-5 py-3 rounded-xl 
@@ -25,16 +25,14 @@ export function SideBar() {
         <ul>
           <li>
             <NavLink
-              onClick={() => navigate("/")}
               className={({ isActive }) => (isActive ? activeStyle : linkStyle)}
-              to={""}
+              to={"/"}
             >
               Home
             </NavLink>
           </li>
           <li>
             <NavLink
-              onClick={() => navigate("/about")}
               className={({ isActive }) => (isActive ? activeStyle : linkStyle)}
               to={"/about"}
             >
@@ -43,7 +41,6 @@ export function SideBar() {
           </li>
           <li>
             <NavLink
-              onClick={() => navigate("/user")}
               className={({ isActive }) => (isActive ? activeStyle : linkStyle)}
               to={"/user"}
             >
@@ -52,7 +49,6 @@ export function SideBar() {
           </li>
           <li>
             <NavLink
-              onClick={() => navigate("/sell")}
               className={({ isActive }) => (isActive ? activeStyle : linkStyle)}
               to={"/sell"}
             >
@@ -61,7 +57,6 @@ export function SideBar() {
           </li>
           <li>
             <NavLink
-              onClick={() => navigate("/item")}
               className={({ isActive }) => (isActive ? activeStyle : linkStyle)}
               to={"/item"}
             >
@@ -71,7 +66,6 @@ export function SideBar() {
         </ul>
       </div>
       <NavLink
-        onClick={() => navigate("/login")}
         className="block px-5 py-4
         hover:bg-slate-800
         hover:text-white

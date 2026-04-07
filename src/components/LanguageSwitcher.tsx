@@ -8,9 +8,9 @@ export function LanguageSwitcher() {
       value={i18n.language}
       onChange={(e) => i18n.changeLanguage(e.target.value)}
     >
-      <option value="ru">Русский</option>
-      <option value="kz">Қазақша</option>
-      <option value="en">English</option>
+      <option value="ru">Рус</option>
+      <option value="kz">Қаз</option>
+      <option value="en">Eng</option>
     </select>
   );
 }
