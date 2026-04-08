@@ -39,26 +39,27 @@ export function MainHeader() {
                             focus:ring-blue-500`}
                 />
               </div>
+
               <div className="flex items-center">
                 <a
                   onClick={() => navigate("/sell")}
                   className="block px-5 py-4"
                 >
-                  Sell
+                  лучшие продавцы
                 </a>
 
                 <a
                   onClick={() => navigate("/item")}
                   className="block px-5 py-4"
                 >
-                  Item
+                  товары
                 </a>
 
                 <a
                   onClick={() => navigate("/user")}
                   className="block px-5 py-4"
                 >
-                  User
+                  товары со скидкой
                 </a>
 
                 <LanguageSwitcher />
@@ -67,7 +68,7 @@ export function MainHeader() {
               </div>
             </div>
           </header>
-          <main className="bg-gray-200">
+          <main className="bg-gray-300 flex-1 overflow-auto p-4">
             <Outlet />
           </main>
         </div>

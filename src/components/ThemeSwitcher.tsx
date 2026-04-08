@@ -4,7 +4,7 @@ import { Sun, Moon } from "lucide-react";
 export function ThemeSwitcher() {
   const { theme, setTheme } = useTheme();
 
-  const darkStyle = "bg-red-500 dark:text-white";
+  const darkStyle = "bg-red-500 text-white";
   const lightStyle = "bg-blue-200 text-gray-800";
 
   return (
