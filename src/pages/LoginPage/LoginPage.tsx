@@ -3,7 +3,7 @@ import googleImage from "/googleImage.jpg";
 import backgroundImage from "/beach.jpg";
 import { LoginForm } from "./component/LoginForm";
 import { useTranslation } from "react-i18next";
-import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { LanguageSwitcher } from "@/features/LanguageSwitcher";
 
 export function LoginPage() {
   const navigate = useNavigate();
@@ -32,7 +32,15 @@ export function LoginPage() {
 
           <LoginForm />
 
-          <button className="flex w-full items-center justify-center space-x-3 rounded-xl bg-[#333333] py-4 font-semibold text-white transition-all hover:bg-black focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none  peer-focus:ring-2 peer-focus:ring-white peer-focus:ring-offset-2 peer-focus:outline-none ">
+          <button
+            className={`flex w-full items-center justify-center 
+              space-x-3 rounded-xl bg-[#333333] py-4 
+              font-semibold text-white transition-all 
+              hover:bg-black focus:ring-2 focus:ring-blue-500 
+              focus:ring-offset-2 focus:outline-none  
+              peer-focus:ring-2 peer-focus:ring-white 
+              peer-focus:ring-offset-2 peer-focus:outline-none `}
+          >
             <div
               style={{ backgroundImage: `url(${googleImage})` }}
               className="h-5 w-5"
@@ -42,12 +50,12 @@ export function LoginPage() {
 
           <p className="mt-10 text-center text-sm text-gray-500">
             {t("auth.login.akaunt_ask")}{" "}
-            <a
+            <button
               onClick={() => navigate("/register")}
-              className="hover:pointer-coarse: font-bold text-blue-600 hover:underline"
+              className="hover:pointer-coarse: font-bold text-blue-600 hover:underline peer"
             >
               {t("auth.login.register_link")}
-            </a>
+            </button>
           </p>
         </form>
         <div className="flex w-90 justify-between">

@@ -1,8 +1,6 @@
 import { NavLink } from "react-router-dom";
 
 export function SideBar() {
-  // const navigate = useNavigate();
-
   const linkStyle = `flex items-center 
     px-5 py-3 rounded-xl 
     transition-all duration-200 

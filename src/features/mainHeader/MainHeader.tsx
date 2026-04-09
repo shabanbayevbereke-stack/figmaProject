@@ -1,16 +1,36 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import { SideBar } from "./SideBar/SideBar";
-import { LanguageSwitcher } from "@/components/LanguageSwitcher";
-import { ThemeSwitcher } from "@/components/ThemeSwitcher";
+import { LanguageSwitcher } from "@/features/LanguageSwitcher";
+import { ThemeSwitcher } from "@/features/ThemeSwitcher";
 import { useState } from "react";
+import { useTheme } from "next-themes";
+import { AnimatePresence, motion } from "motion/react";
 
 export function MainHeader() {
   const navigate = useNavigate();
   const [openSideBar, setOpenSideBar] = useState(true);
+  const { theme, resolvedTheme } = useTheme();
+  const mounted = useState(false);
+
+  const darkStyle = "bg-slate-800 text-white shadow-blue-500";
+  const lightStyle = "bg-white text-gray-900 shadow-md";
+
+  const currentTheme = mounted ? resolvedTheme || theme : "light";
+  const isDark = currentTheme === "dark";
 
   return (
     <div className="w-full flex h-screen overflow-hidden">
-      {openSideBar && <SideBar />}
+      <AnimatePresence>
+        {openSideBar && (
+          <motion.div
+            initial={{ x: -250, width: 0 }}
+            animate={{ x: 0, width: "100%" }}
+            exit={{ x: -250, width: 0 }}
+          >
+            <SideBar />
+          </motion.div>
+        )}
+      </AnimatePresence>
       <div className="flex flex-col h-full flex-1">
         <div className="flex flex-col h-full flex-1 overflow-hidden">
           <header className="flex  items-center w-full shadow-md shrink-0 ">
@@ -21,16 +41,16 @@ export function MainHeader() {
                   className="flex items-center px-2"
                 >
                   <div className="flex h-5 w-7 flex-col justify-between items-center ">
-                    <span className="h-1 w-full rounded bg-black dark:bg-white"></span>
-                    <span className="h-1 w-full rounded bg-black dark:bg-white"></span>
-                    <span className="h-1 w-full rounded bg-black dark:bg-white"></span>
+                    <span className={`h-1 w-full rounded ${isDark ? "bg-white" : "bg-black"}`}></span>
+                    <span className={`h-1 w-full rounded ${isDark ? "bg-white" : "bg-black"}`}></span>
+                    <span className={`h-1 w-full rounded ${isDark ? "bg-white" : "bg-black"}`}></span>
                   </div>
                 </button>
 
                 <input
                   type="text"
                   placeholder="Search..."
-                  className={`w-60 m-4 bg-white rounded-md px-4 py-2
+                  className={`w-60 m-4 ${isDark ? darkStyle : lightStyle} rounded-md px-4 py-2
                            text-gray-800 
                             placeholder:text-gray-500 
                             border border-gray-300 
@@ -68,7 +88,9 @@ export function MainHeader() {
               </div>
             </div>
           </header>
-          <main className="bg-gray-300 flex-1 overflow-auto p-4">
+          <main
+            className={`${isDark ? "bg-gray-600" : "bg-gray-100"} flex-1 overflow-auto p-4`}
+          >
             <Outlet />
           </main>
         </div>

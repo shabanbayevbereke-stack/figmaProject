@@ -7,6 +7,7 @@ import { UserPage } from "./pages/UserPage/UserPage";
 import { MainHeader } from "./features/mainHeader/MainHeader";
 import { LoginPage } from "./pages/LoginPage/LoginPage";
 import { RegisterPage } from "./pages/RegisterPage/RegisterPage";
+import { ErrorPage } from "./pages/ErrorPage/ErrorPage";
 
 function App() {
   return (
@@ -20,17 +21,8 @@ function App() {
           <Route path="/item" element={<ItemPage />} />
           <Route path="/sell" element={<SellPage />} />
           <Route path="/user" element={<UserPage />} />
-          <Route
-            path="*"
-            element={
-              <h1>
-                404
-                <br />
-                Page don't found
-              </h1>
-            }
-          />
         </Route>
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </>
   );
