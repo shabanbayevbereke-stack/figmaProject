@@ -17,9 +17,9 @@ export function Cards({ item }: CardProps) {
 
   return (
     <div
-      className={`rounded p-4 flex gap-4 w-full transition-all duration-300 ${isDark ? darkStyle : lightStyle}`}
+      className={`h-full rounded p-4 flex justify-between gap-4 w-full transition-all duration-300 ${isDark ? darkStyle : lightStyle}`}
     >
-      <div>
+      <div className="flex flex-col justify-between">
         <h2 className="text-lg font-bold mb-2">Card Title {item}</h2>
         <button
           className={`font-bold py-2 px-4 rounded transition-colors${
@@ -28,10 +28,10 @@ export function Cards({ item }: CardProps) {
               : " bg-gray-200 hover:bg-gray-300 text-gray-800"
           }`}
         >
-          Click me
+          детали
         </button>
       </div>
-      <div>
+      <div className="flex flex-col justify-between">
         <p className={isDark ? "text-gray-400" : "text-gray-600"}>
           This is a description for card {item}.
         </p>

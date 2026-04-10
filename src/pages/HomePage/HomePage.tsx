@@ -54,7 +54,7 @@ export function HomePage() {
           <li>Item 6</li>
         </ul>
       </div>
-      <div className="gap-6 w-full flex justify-around my-5">
+      <div className="gap-6 w-full flex justify-around my-5 h-40">
         <Cards item={1} />
         <Cards item={2} />
         <Cards item={3} />

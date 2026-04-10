@@ -1,3 +1,5 @@
+import { LanguageSwitcher } from "@/features/LanguageSwitcher";
+import { ThemeSwitcher } from "@/features/ThemeSwitcher";
 import { NavLink } from "react-router-dom";
 
 export function SideBar() {
@@ -60,6 +62,12 @@ export function SideBar() {
             >
               Item
             </NavLink>
+          </li>
+          <li>
+            <LanguageSwitcher />
+          </li>
+          <li>
+            <ThemeSwitcher />
           </li>
         </ul>
       </div>

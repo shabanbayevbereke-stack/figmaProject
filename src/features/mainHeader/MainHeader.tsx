@@ -1,7 +1,5 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import { SideBar } from "./SideBar/SideBar";
-import { LanguageSwitcher } from "@/features/LanguageSwitcher";
-import { ThemeSwitcher } from "@/features/ThemeSwitcher";
 import { useState } from "react";
 import { useTheme } from "next-themes";
 import { AnimatePresence, motion } from "motion/react";
@@ -24,7 +22,7 @@ export function MainHeader() {
         {openSideBar && (
           <motion.div
             initial={{ x: -250, width: 0 }}
-            animate={{ x: 0, width: "100%" }}
+            animate={{ x: 0, width: "240px" }}
             exit={{ x: -250, width: 0 }}
           >
             <SideBar />
@@ -41,16 +39,22 @@ export function MainHeader() {
                   className="flex items-center px-2"
                 >
                   <div className="flex h-5 w-7 flex-col justify-between items-center ">
-                    <span className={`h-1 w-full rounded ${isDark ? "bg-white" : "bg-black"}`}></span>
-                    <span className={`h-1 w-full rounded ${isDark ? "bg-white" : "bg-black"}`}></span>
-                    <span className={`h-1 w-full rounded ${isDark ? "bg-white" : "bg-black"}`}></span>
+                    <span
+                      className={`h-1 w-full rounded ${isDark ? "bg-white" : "bg-black"}`}
+                    ></span>
+                    <span
+                      className={`h-1 w-full rounded ${isDark ? "bg-white" : "bg-black"}`}
+                    ></span>
+                    <span
+                      className={`h-1 w-full rounded ${isDark ? "bg-white" : "bg-black"}`}
+                    ></span>
                   </div>
                 </button>
 
                 <input
                   type="text"
                   placeholder="Search..."
-                  className={`w-60 m-4 ${isDark ? darkStyle : lightStyle} rounded-md px-4 py-2
+                  className={`w-[320px] m-4 ${isDark ? darkStyle : lightStyle} rounded-full px-4 py-2
                            text-gray-800 
                             placeholder:text-gray-500 
                             border border-gray-300 
@@ -65,7 +69,7 @@ export function MainHeader() {
                   onClick={() => navigate("/sell")}
                   className="block px-5 py-4"
                 >
-                  лучшие продавцы
+                  лучшие продажи
                 </a>
 
                 <a
@@ -79,12 +83,20 @@ export function MainHeader() {
                   onClick={() => navigate("/user")}
                   className="block px-5 py-4"
                 >
-                  товары со скидкой
+                  скидки
                 </a>
-
-                <LanguageSwitcher />
-
-                <ThemeSwitcher />
+                <a
+                  onClick={() => navigate("/user")}
+                  className="block px-5 py-4"
+                >
+                  Лояльность
+                </a>
+                <a
+                    onClick={() => navigate("/user")}
+                    className="block px-5 py-4"
+                  >
+                    Привет Пользователь
+                </a>
               </div>
             </div>
           </header>
