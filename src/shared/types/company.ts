@@ -1,11 +1,12 @@
 interface CompanyInfo {
   bin: string;
-  id: number;
-  name: string;
-  address: string;
-  phone: string;
-  email: string;
-  website: string;
+  nameru: string;
+  namekz: string;
+  addressru: string;
+  director: string;
+  statusru: string;
+  datereg: string;
+  okedru: string;
 }
 
 interface EgovResponse<T> {

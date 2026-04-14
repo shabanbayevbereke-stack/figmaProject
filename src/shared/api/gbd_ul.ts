@@ -1,25 +1,11 @@
 import { apiInstance } from "./base";
 
 export const getCompanyByBin = async (bin: string) => {
-  const source = {
-    size: 1,
-    query: {
-      bool: {
-        must: [
-          {
-            match: {
-              bin: bin,
-            },
-          },
-        ],
-      },
-    },
-  };
-
-  const response = await apiInstance.get("gbd_ul/v1", {
-    params: { source: JSON.stringify(source) },
+  const response = await apiInstance.get("/egov", {
+    params: { bin },
   });
-  console.log(response);
-  
-  return response.data;
+
+  console.log("Данные из прокси:", response.data);
+
+  return Array.isArray(response.data) ? response.data[0] : response.data;
 };
