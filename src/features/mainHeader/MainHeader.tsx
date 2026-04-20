@@ -1,13 +1,14 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import { SideBar } from "./SideBar/SideBar";
 import { useState } from "react";
 import { useTheme } from "next-themes";
 import { AnimatePresence, motion } from "motion/react";
+import { SideBar } from "./SideBar/SideBar";
 
 export function MainHeader() {
   const navigate = useNavigate();
   const [openSideBar, setOpenSideBar] = useState(true);
   const { theme, resolvedTheme } = useTheme();
+
   const mounted = useState(false);
 
   const darkStyle = "bg-slate-800 text-white shadow-blue-500";

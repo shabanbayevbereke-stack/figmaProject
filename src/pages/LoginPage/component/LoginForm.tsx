@@ -5,13 +5,17 @@ import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { dataUsers } from "@/shared/mocks/users";
 import { useTranslation } from "react-i18next";
+import { useLogin } from "@/shared/api/useLogin";
 
 export function LoginForm() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const { mutate } = useLogin();
+
   const loginSchema = yup.object({
-    email: yup
+    login: yup
       .string()
       .email(t("auth.error.invalid_email"))
       .required(t("auth.error.invalid_credentials")),
@@ -22,7 +26,7 @@ export function LoginForm() {
   });
 
   type LoginFormData = yup.InferType<typeof loginSchema>;
-  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -33,21 +37,26 @@ export function LoginForm() {
   });
 
   const onSubmit = (data: LoginFormData) => {
-    if (
-      dataUsers.some(
-        (user) => user.email === data.email && user.password === data.password,
-      )
-    ) {
-      console.log("Вход прошел успешно");
-      navigate("/");
-    } else {
-      console.log("Неверный email или пароль");
-      setError("email", { message: "Неверный данные" });
-      setError("password", { message: "Неверный данные" });
-      return;
-    }
+    mutate(data, {
+      onSuccess: (response) => {
+        if (data === null) {
+          console.log("нету");
+          return;
+        } else {
+          console.log("данные", response);
+          navigate("/");
+        }
+      },
+      onError: (error) => {
+        const errorMessage =
+          error.response?.data?.message || t("auth.error.invalid_credentials");
+        setError("login", { message: errorMessage });
+        setError("password", { message: errorMessage });
+      },
+    });
     console.log("Данные формы:", data);
   };
+
   return (
     <>
       <div className="space-y-6">
@@ -55,8 +64,8 @@ export function LoginForm() {
           label={t("auth.hints.email")}
           type="email"
           placeholder={t("auth.hints.email_input")}
-          {...register("email")}
-          error={errors.email?.message}
+          {...register("login")}
+          error={errors.login?.message}
         />
         <MyInput
           label={t("auth.hints.password")}

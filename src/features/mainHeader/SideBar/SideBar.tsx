@@ -1,8 +1,9 @@
-import { LanguageSwitcher } from "@/features/LanguageSwitcher";
-import { ThemeSwitcher } from "@/features/ThemeSwitcher";
-import { NavLink } from "react-router-dom";
+import { LanguageSwitcher } from "@/features/components/LanguageSwitcher";
+import { ThemeSwitcher } from "@/features/components/ThemeSwitcher";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export function SideBar() {
+  const navigate = useNavigate();
   const linkStyle = `flex items-center 
     px-5 py-3 rounded-xl 
     transition-all duration-200 
@@ -71,17 +72,20 @@ export function SideBar() {
           </li>
         </ul>
       </div>
-      <NavLink
+      <button
         className="block px-5 py-4
         hover:bg-slate-800
         hover:text-white
         text-slate-400
         rounded-xl
         transition-all duration-200"
-        to={"/login"}
+        onClick={() => {
+          localStorage.setItem("token", "");
+          navigate("/login");
+        }}
       >
         выйти
-      </NavLink>
+      </button>
     </div>
   );
 }

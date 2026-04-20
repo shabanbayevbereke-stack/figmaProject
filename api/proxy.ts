@@ -1,5 +1,9 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
+interface EGovErrorResponse {
+  message?: string;
+  code?: string;
+}
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -10,7 +14,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   try {
     const { bin } = req.query;
-    const API_KEY = "54d796a2b9354e7fa31562694e1986e1";
+
+    if (!bin) {
+      return res.status(400).json({
+        error: "Missing 'bin' query parameter",
+      });
+    }
+
+    const API_KEY = import.meta.env.VITE_API_KEY;
 
     const sourceQuery = {
       size: 100,
@@ -37,13 +48,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     });
 
     return res.status(200).json(response.data);
-  } catch (error: any) {
-    console.log(error);
-    
-    return res.status(error.response?.status || 500).json({
+  } catch (error) {
+    const axiosError = error as AxiosError<EGovErrorResponse>;
+
+    console.error("Egov Proxy Error:", axiosError.message);
+
+    return res.status(axiosError.response?.status || 500).json({
       error: "Egov Proxy Error",
-      message: error.message,
-      details: error.response?.data || "No additional info",
+      message: axiosError.message,
+      details: axiosError.response?.data || "No additional info",
     });
   }
 }

@@ -3,7 +3,7 @@ import backgroundImage from "/beach.jpg";
 import googleImage from "/googleImage.jpg";
 import { RegisterForm } from "./component/RegisterForm";
 import { useTranslation } from "react-i18next";
-import { LanguageSwitcher } from "@/features/LanguageSwitcher";
+import { LanguageSwitcher } from "@/features/components/LanguageSwitcher";
 
 export function RegisterPage() {
   const navigation = useNavigate();

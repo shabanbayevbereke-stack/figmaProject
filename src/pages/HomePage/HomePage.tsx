@@ -1,5 +1,5 @@
-import { Cards } from "@/features/Cards";
-import { CustomTable } from "@/features/CustomTable";
+import { Cards } from "@/features/components/Cards";
+import { CustomTable } from "@/features/components/CustomTable";
 import { useTheme } from "next-themes";
 import { useState } from "react";
 

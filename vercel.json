@@ -3,6 +3,10 @@
     {
       "source": "/egov",
       "destination": "/api/proxy"
+    },
+    {
+      "source": "/api/Account/:path*",
+      "destination": "http://localhost:5001/api/Account/:path*"
     }
   ]
 }

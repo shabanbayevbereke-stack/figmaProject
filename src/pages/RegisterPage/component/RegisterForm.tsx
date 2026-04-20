@@ -7,11 +7,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-
 export function RegisterForm() {
   const { t } = useTranslation();
   const schema = yup.object({
-    email: yup
+    login: yup
       .string()
       .email(t("auth.error.invalid_email"))
       .required(t("auth.error.invalid_credentials")),
@@ -24,7 +23,7 @@ export function RegisterForm() {
       .oneOf([yup.ref("password")], t("auth.error.passwords_do_not_match"))
       .required(t("auth.error.invalid_credentials")),
   });
-  
+
   type RegisterFormData = yup.InferType<typeof schema>;
   const navigate = useNavigate();
   const {
@@ -39,9 +38,10 @@ export function RegisterForm() {
     if (data.password !== data.confirmPassword) {
       console.log("Пароли не совпадают");
       return;
+    } else {
+      console.log("Регистрация прошла успешно");
+      navigate("/");
     }
-    console.log("Регистрация прошла успешно");
-    navigate("/");
   };
   return (
     <>
@@ -50,8 +50,8 @@ export function RegisterForm() {
           label={t("auth.hints.email")}
           type="email"
           placeholder={t("auth.hints.email_input")}
-          {...register("email")}
-          error={errors.email?.message}
+          {...register("login")}
+          error={errors.login?.message}
         />
         <MyInput
           label={t("auth.hints.password")}

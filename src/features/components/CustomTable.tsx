@@ -2,12 +2,6 @@ import { dataTable } from "@/shared/mocks/tableData";
 import { useTheme } from "next-themes";
 import { useState } from "react";
 
-// type Props = {
-//   id: number;
-//   itemName: string;
-//   price: string;
-// };
-
 export function CustomTable() {
   const { theme, resolvedTheme } = useTheme();
   const mounted = useState(false);

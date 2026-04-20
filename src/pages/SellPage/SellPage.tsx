@@ -1,4 +1,4 @@
-import { useCompanySearch } from "@/shared/api/queries";
+import { useCompanySearch } from "@/shared/api/useCompanySearch";
 import { Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -23,7 +23,7 @@ export function SellPage() {
       <h1>страница продаж</h1>
       {data && (
         <div className="mt-6 p-4 border rounded-lg shadow-sm bg-white">
-          <h2 className="text-xl font-bold mb-4">{data.nameru}</h2>
+          <h2 className="text-xl font-bold mb-4">{data.nёameru}</h2>
           <div className="grid grid-cols-1 gap-2">
             <p>
               <strong>БИН:</strong> {data.bin}
@@ -43,8 +43,9 @@ export function SellPage() {
           </div>
         </div>
       )}
+
       {!isLoading && !data && <p>Нет данных для отображения</p>}
-      {isLoading && <Loader2 className="animate-spin" size={128}/>}
+      {isLoading && <Loader2 className="animate-spin" size={128} />}
     </>
   );
 }
