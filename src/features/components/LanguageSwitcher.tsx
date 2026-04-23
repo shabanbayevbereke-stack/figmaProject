@@ -1,31 +1,33 @@
 import { useTheme } from "next-themes";
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Globe } from "lucide-react";
 
 export function LanguageSwitcher() {
   const { i18n } = useTranslation();
-  const { theme, resolvedTheme } = useTheme();
-  const mounted = useState(false);
+  const { resolvedTheme } = useTheme();
 
-  const darkStyle = "bg-gray-800 text-white shadow-blue-500";
-  const lightStyle = "bg-blue-200 text-gray-800 shadow-md";
-  const currentTheme = mounted ? resolvedTheme || theme : "light";
-  const isDark = currentTheme === "dark";
+  const isDark = resolvedTheme === "dark";
+
   return (
-    <select
-      className={`bg-transparent text-sm border border-gray-300 rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500 ${isDark ? darkStyle : lightStyle}`}
-      value={i18n.language}
-      onChange={(e) => i18n.changeLanguage(e.target.value)}
-    >
-      <option value="ru" className={isDark ? darkStyle : lightStyle}>
-        Рус
-      </option>
-      <option value="kz" className={isDark ? darkStyle : lightStyle}>
-        Қаз
-      </option>
-      <option value="en" className={isDark ? darkStyle : lightStyle}>
-        Eng
-      </option>
-    </select>
+    <div className="relative flex items-center gap-2">
+      <Globe size={16} className={isDark ? "text-slate-400" : "text-slate-500"} />
+      
+      <select
+        value={i18n.language}
+        onChange={(e) => i18n.changeLanguage(e.target.value)}
+        className={`
+          appearance-none bg-transparent text-sm font-medium cursor-pointer outline-none
+          px-2 py-1 rounded-lg transition-all border
+          ${isDark 
+            ? "text-slate-200 border-slate-700 hover:bg-slate-800" 
+            : "text-slate-700 border-slate-200 hover:bg-slate-100"
+          }
+        `}
+      >
+        <option value="ru">Рус</option>
+        <option value="kz">Қаз</option>
+        <option value="en">Eng</option>
+      </select>
+    </div>
   );
 }

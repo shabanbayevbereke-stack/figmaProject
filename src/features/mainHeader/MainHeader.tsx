@@ -1,113 +1,83 @@
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { useTheme } from "next-themes";
-import { AnimatePresence, motion } from "motion/react";
 import { SideBar } from "./SideBar/SideBar";
+import { useUserProfile } from "@/shared/api/useUserProfile";
+import { FiSearch, FiMenu, FiX } from "react-icons/fi";
 
 export function MainHeader() {
   const navigate = useNavigate();
-  const [openSideBar, setOpenSideBar] = useState(true);
-  const { theme, resolvedTheme } = useTheme();
+  const location = useLocation();
+  const { resolvedTheme } = useTheme();
+  const { data } = useUserProfile();
+  
+  const [isOpen, setIsOpen] = useState(true);
 
-  const mounted = useState(false);
+  const isDark = resolvedTheme === "dark";
 
-  const darkStyle = "bg-slate-800 text-white shadow-blue-500";
-  const lightStyle = "bg-white text-gray-900 shadow-md";
+  const themeClass = isDark 
+    ? "bg-[#0f172a] text-slate-200 border-slate-800" 
+    : "bg-white text-slate-900 border-slate-200";
 
-  const currentTheme = mounted ? resolvedTheme || theme : "light";
-  const isDark = currentTheme === "dark";
+  const headerClass = `h-16 flex items-center justify-between px-6 border-b sticky top-0 z-20 backdrop-blur-md ${
+    isDark ? "bg-[#0f172a]/80 border-slate-800" : "bg-white/80 border-slate-200"
+  }`;
 
   return (
-    <div className="w-full flex h-screen overflow-hidden">
-      <AnimatePresence>
-        {openSideBar && (
-          <motion.div
-            initial={{ x: -250, width: 0 }}
-            animate={{ x: 0, width: "240px" }}
-            exit={{ x: -250, width: 0 }}
-          >
-            <SideBar />
-          </motion.div>
-        )}
-      </AnimatePresence>
-      <div className="flex flex-col h-full flex-1">
-        <div className="flex flex-col h-full flex-1 overflow-hidden">
-          <header className="flex  items-center w-full shadow-md shrink-0 ">
-            <div className="flex justify-between list-none items-center px-3 w-full">
-              <div className="flex items-center">
+    <div className={`flex h-screen w-full overflow-hidden ${isDark ? "bg-[#020617]" : "bg-slate-50"}`}>
+      
+      <div className={`transition-all duration-300 border-r ${themeClass} ${isOpen ? "w-64" : "w-0 overflow-hidden"}`}>
+        <div className="w-64 h-full">
+          <SideBar />
+        </div>
+      </div>
+
+      <div className="flex-1 flex flex-col min-w-0">
+        <header className={headerClass}>
+          <div className="flex items-center gap-4">
+            <button onClick={() => setIsOpen(!isOpen)} className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg">
+              {isOpen ? <FiX size={20} /> : <FiMenu size={20} />}
+            </button>
+            
+            <div className="relative hidden md:block">
+              <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+              <input 
+                type="text" 
+                placeholder="Поиск..." 
+                className={`pl-10 pr-4 py-1.5 rounded-full border text-sm focus:outline-none focus:ring-1 focus:ring-indigo-500
+                  ${isDark ? "bg-slate-900 border-slate-700" : "bg-slate-50 border-slate-200"}`}
+              />
+            </div>
+          </div>
+
+          <div className="flex items-center gap-5">
+            <nav className="hidden lg:flex gap-4 text-sm font-medium">
+              {["/sell", "/item"].map((path) => (
                 <button
-                  onClick={() => setOpenSideBar(!openSideBar)}
-                  className="flex items-center px-2"
+                  key={path}
+                  onClick={() => navigate(path)}
+                  className={location.pathname === path ? "text-indigo-500" : "text-slate-500 hover:text-slate-800 dark:hover:text-slate-200"}
                 >
-                  <div className="flex h-5 w-7 flex-col justify-between items-center ">
-                    <span
-                      className={`h-1 w-full rounded ${isDark ? "bg-white" : "bg-black"}`}
-                    ></span>
-                    <span
-                      className={`h-1 w-full rounded ${isDark ? "bg-white" : "bg-black"}`}
-                    ></span>
-                    <span
-                      className={`h-1 w-full rounded ${isDark ? "bg-white" : "bg-black"}`}
-                    ></span>
-                  </div>
+                  {path === "/sell" ? "Продажи" : "Товары"}
                 </button>
+              ))}
+            </nav>
 
-                <input
-                  type="text"
-                  placeholder="Search..."
-                  className={`w-[320px] m-4 ${isDark ? darkStyle : lightStyle} rounded-full px-4 py-2
-                           text-gray-800 
-                            placeholder:text-gray-500 
-                            border border-gray-300 
-                            focus:outline-none 
-                            focus:ring-2 
-                            focus:ring-blue-500`}
-                />
+            <div className="flex items-center gap-3 border-l pl-5 dark:border-slate-800">
+              <div className="text-right hidden sm:block">
+                <p className="text-sm font-semibold leading-none">{data?.firstName || "Пользователь"}</p>
+                <p className="text-xs text-slate-500 mt-1">Пользователь</p>
               </div>
-
-              <div className="flex items-center">
-                <a
-                  onClick={() => navigate("/sell")}
-                  className="block px-5 py-4"
-                >
-                  лучшие продажи
-                </a>
-
-                <a
-                  onClick={() => navigate("/item")}
-                  className="block px-5 py-4"
-                >
-                  товары
-                </a>
-
-                <a
-                  onClick={() => navigate("/user")}
-                  className="block px-5 py-4"
-                >
-                  скидки
-                </a>
-                <a
-                  onClick={() => navigate("/user")}
-                  className="block px-5 py-4"
-                >
-                  Лояльность
-                </a>
-                <a
-                    onClick={() => navigate("/user")}
-                    className="block px-5 py-4"
-                  >
-                    Привет Пользователь
-                </a>
+              <div className="w-9 h-9 rounded-full bg-indigo-500 flex items-center justify-center text-white font-bold">
+                {data?.firstName?.[0] || "?"}
               </div>
             </div>
-          </header>
-          <main
-            className={`${isDark ? "bg-gray-600" : "bg-gray-100"} flex-1 overflow-auto p-4`}
-          >
-            <Outlet />
-          </main>
-        </div>
-        <footer className="bg-black text-white p-4">проба</footer>
+          </div>
+        </header>
+
+        <main className="flex-1 overflow-auto p-6">
+          <Outlet />
+        </main>
       </div>
     </div>
   );

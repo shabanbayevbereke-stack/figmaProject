@@ -1,65 +1,91 @@
 import { Cards } from "@/features/components/Cards";
 import { CustomTable } from "@/features/components/CustomTable";
 import { useTheme } from "next-themes";
-import { useState } from "react";
 
 export function HomePage() {
-  const { theme, resolvedTheme } = useTheme();
-  const mounted = useState(false);
+  const { resolvedTheme } = useTheme();
 
-  const darkStyle = "bg-slate-800 text-white shadow-blue-500";
-  const lightStyle = "bg-white text-gray-900 shadow-md";
-  const currentTheme = mounted ? resolvedTheme || theme : "light";
-  const isDark = currentTheme === "dark";
+  const isDark = resolvedTheme === "dark";
+
+  const cardBase = `p-6 rounded-2xl border transition-all duration-200 ${
+    isDark
+      ? "bg-[#1f2937] border-slate-800 text-white"
+      : "bg-white border-slate-200 shadow-sm text-slate-900"
+  }`;
+
   return (
-    <>
-      <div className="flex justify-between items-center mb-4">
-        <h2 className={isDark ? "text-white" : "text-gray-900"}>главная страница</h2>
+    <div className="space-y-6 max-w-350 mx-auto">
+      <div className="flex justify-between items-center px-1">
+        <h1 className="text-2xl font-bold tracking-tight">Панель управления</h1>
         <select
-          name=""
-          id=""
-          className={`${isDark ? darkStyle : lightStyle} p-3 rounded-lg shadow-md`}
+          className={`px-4 py-2 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-indigo-500/20 ${
+            isDark
+              ? "bg-slate-800 border-slate-700"
+              : "bg-white border-slate-200"
+          }`}
         >
-          <option value="">по id</option>
-          <option value="">по имени</option>
-          <option value="">по цене</option>
+          <option>Сортировка: по ID</option>
+          <option>Сортировка: по имени</option>
         </select>
       </div>
-      <div className={`${isDark ? darkStyle : lightStyle} my-5 rounded-lg shadow-md p-4 gap-4`}>
-        <div className="flex w-full justify-between">
-          <div>процент</div>
-          <div className="text-center">
-            <p>бронза</p>
-            <p>цена</p>
+
+      <div className={cardBase}>
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+          <div>
+            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">
+              Ваш статус
+            </p>
+            <h2 className="text-2xl font-black text-indigo-500 italic">
+              60% до Золота
+            </h2>
           </div>
-          <div className="text-center">
-            <p>серебро</p>
-            <p>цена</p>
-          </div>
-          <div className="text-center">
-            <p>золото</p>
-            <p>цена</p>
+          <div className="flex gap-6 text-sm">
+            {["Бронза", "Серебро", "Золото"].map((tier, i) => (
+              <div key={tier} className="text-center">
+                <p className="text-slate-400 text-[10px] uppercase font-bold">
+                  {tier}
+                </p>
+                <p className="font-bold tracking-tight">
+                  {[100, 500, 1000][i]} ₽
+                </p>
+              </div>
+            ))}
           </div>
         </div>
 
-        <div className="relative h-1 w-full bg-gray-200">
+        <div
+          className={`h-4 w-full rounded-full overflow-hidden p-1 ${isDark ? "bg-slate-900" : "bg-slate-100"}`}
+        >
           <div
-            className="absolute top-0 left-0 h-full bg-blue-500"
+            className="h-full rounded-full bg-linear-to-r from-indigo-600 to-blue-400 transition-all duration-700"
             style={{ width: "60%" }}
-          ></div>
+          />
         </div>
-
-        <ul className="flex px-2">
-          <li>Item 5</li>
-          <li>Item 6</li>
-        </ul>
+        <p className="mt-3 text-xs text-slate-500 font-medium tracking-wide">
+          ● Последняя покупка: 5 мин назад{" "}
+          <span className="mx-2 text-slate-300">|</span> ● Доступно бонусов: 120
+        </p>
       </div>
-      <div className="gap-6 w-full flex justify-around my-5 h-40">
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Cards item={1} />
         <Cards item={2} />
         <Cards item={3} />
       </div>
-      <CustomTable />
-    </>
+
+      <div className={`${cardBase} overflow-hidden p-0`}>
+        <div className="p-6 border-b border-inherit flex justify-between items-center">
+          <h3 className="text-lg font-bold">Последние операции</h3>
+          <div className="flex gap-2">
+            <span className="text-xs bg-indigo-500/10 text-indigo-500 px-2 py-1 rounded-md font-bold">
+              LIVE
+            </span>
+          </div>
+        </div>
+        <div className="p-4 overflow-x-auto">
+          <CustomTable />
+        </div>
+      </div>
+    </div>
   );
 }

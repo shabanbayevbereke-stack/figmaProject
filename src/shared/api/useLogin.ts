@@ -32,10 +32,8 @@ export const useLogin = () => {
         return data;
       },
       onSuccess: (response) => {
-        console.log("Успешный вход:", response);
-
         if (response.isSuccess && response.data) {
-          localStorage.setItem("token", response.data);
+          localStorage.setItem("localStoragetoken", response.data);
           apiInstance.defaults.headers.common["Authorization"] =
             `Bearer ${response.data}`;
         }

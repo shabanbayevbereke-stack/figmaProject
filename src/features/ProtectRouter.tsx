@@ -1,16 +1,27 @@
+import { useUserProfile } from "@/shared/api/useUserProfile";
 import { Navigate, Outlet } from "react-router-dom";
 
-interface ProtectedRouteProps {
-  redirectPath?: string;
-}
+export const ProtectedRoute = () => {
+  const token = localStorage.getItem("localStoragetoken");
 
-export const ProtectedRoute = ({
-  redirectPath = "/login",
-}: ProtectedRouteProps) => {
-  const token = localStorage.getItem("token");
+  const { data: user, isLoading, isError } = useUserProfile();
 
   if (!token) {
-    return <Navigate to={redirectPath} replace />;
+    return <Navigate to="/login" replace />;
+  }
+
+  if (isLoading) {
+    return (
+      <div
+        style={{ display: "flex", justifyContent: "center", marginTop: "50px" }}
+      >
+        <span>Проверка авторизации...</span>
+      </div>
+    );
+  }
+
+  if (isError || !user) {
+    return <Navigate to="/login" replace />;
   }
 
   return <Outlet />;
