@@ -2,6 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useTheme } from "next-themes";
 import { LanguageSwitcher } from "@/features/components/LanguageSwitcher";
 import { ThemeSwitcher } from "@/features/components/ThemeSwitcher";
+import { useRoleAccess } from "@/shared/hooks";
 
 export function SideBar() {
   const navigate = useNavigate();
@@ -25,12 +26,15 @@ export function SideBar() {
       : `${base} text-slate-500 hover:bg-slate-50 hover:text-indigo-600`;
   };
 
+  const getRoleAccess = useRoleAccess();
+
   const links = [
-    { to: "/", label: "Главная" },
-    { to: "/about", label: "О нас" },
-    { to: "/user", label: "Профиль" },
-    { to: "/sell", label: "Продажи" },
-    { to: "/item", label: "Товары" },
+    { to: "/", label: "Главная", accessedRoles: ["root"] },
+    { to: "/about", label: "О нас", accessedRoles: ["root"] },
+    { to: "/user", label: "Профиль", accessedRoles: ["root"] },
+    { to: "/doctor", label: "Доктора", accessedRoles: ["root"] },
+    { to: "/item", label: "Товары", accessedRoles: ["root"] },
+    { to: "/userlist", label: "Пользователи", accessedRoles: ["root"] },
   ];
 
   return (
@@ -44,11 +48,15 @@ export function SideBar() {
       </div>
 
       <nav className="flex-1">
-        {links.map((link) => (
-          <NavLink key={link.to} to={link.to} className={getLinkStyle}>
-            {link.label}
-          </NavLink>
-        ))}
+        {links.map((link) => {
+          if (getRoleAccess(link.accessedRoles)) {
+            return (
+              <NavLink key={link.to} to={link.to} className={getLinkStyle}>
+                {link.label}
+              </NavLink>
+            );
+          }
+        })}
       </nav>
 
       <div
@@ -66,7 +74,7 @@ export function SideBar() {
             localStorage.setItem("localStoragetoken", "");
             navigate("/login");
           }}
-          className={`w-full text-left px-4 py-2 text-sm transition-colors
+          className={` w-full text-left px-4 py-2 text-sm transition-colors
             ${isDark ? "text-slate-500 hover:text-red-400" : "text-slate-400 hover:text-red-500"}`}
         >
           Выйти из системы

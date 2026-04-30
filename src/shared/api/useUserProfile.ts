@@ -1,21 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { apiInstance } from "./base";
+import type { UserProfile, UserProfileResponse } from "../types/user";
 
-export interface UserProfile {
-  firstName: string;
-  id: number;
-  login: string;
-  userName: string;
-  role?: string;
-}
-
-interface UserProfileResponse {
-  text: string;
-  code: string;
-  data: UserProfile;
-  isSuccess: boolean;
-  message: string | null;
-}
 
 export const useUserProfile = () => {
   const token = localStorage.getItem("localStoragetoken");

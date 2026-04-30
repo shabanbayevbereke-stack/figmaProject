@@ -33,7 +33,7 @@ export function LoginPage() {
           <LoginForm />
 
           <button
-            className={`flex w-full items-center justify-center 
+            className={` flex w-full items-center justify-center 
               space-x-3 rounded-xl bg-[#333333] py-4 
               font-semibold text-white transition-all 
               hover:bg-black focus:ring-2 focus:ring-blue-500 
@@ -52,7 +52,7 @@ export function LoginPage() {
             {t("auth.login.akaunt_ask")}{" "}
             <button
               onClick={() => navigate("/register")}
-              className="hover:pointer-coarse: font-bold text-blue-600 hover:underline peer"
+              className=" hover:pointer-coarse: font-bold text-blue-600 hover:underline peer"
             >
               {t("auth.login.register_link")}
             </button>

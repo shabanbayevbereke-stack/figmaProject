@@ -1,27 +1,24 @@
 import { useUserProfile } from "@/shared/api/useUserProfile";
+import type { UserRole } from "@/shared/types/auth";
 import { Navigate, Outlet } from "react-router-dom";
 
-export const ProtectedRoute = () => {
-  const token = localStorage.getItem("localStoragetoken");
+interface ProtectedRouteProps {
+  allowedRoles?: UserRole[]; 
+}
 
+export const ProtectedRoute = ({ allowedRoles }: ProtectedRouteProps) => {
+  const token = localStorage.getItem("localStoragetoken");
+  
   const { data: user, isLoading, isError } = useUserProfile();
 
-  if (!token) {
-    return <Navigate to="/login" replace />;
-  }
+  if (!token) return <Navigate to="/login" replace />;
+  
+  if (isLoading) return <div>Загрузка...</div>;
 
-  if (isLoading) {
-    return (
-      <div
-        style={{ display: "flex", justifyContent: "center", marginTop: "50px" }}
-      >
-        <span>Проверка авторизации...</span>
-      </div>
-    );
-  }
+  if (isError || !user) return <Navigate to="/login" replace />;
 
-  if (isError || !user) {
-    return <Navigate to="/login" replace />;
+  if (allowedRoles && !allowedRoles.includes(user.role as UserRole)) {
+    return <Navigate to="/" replace />;
   }
 
   return <Outlet />;

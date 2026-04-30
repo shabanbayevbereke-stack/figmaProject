@@ -1,17 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { apiEgov } from "./base";
+import type { CompanyData } from "../types/company";
 
-interface CompanyData {
-  bin: string;
-  nameru: string;
-  namekz: string;
-  addressru: string;
-  director: string;
-  statusru: string;
-  datereg: string;
-  okedru: string;
-  [key: string]: string;
-}
 
 export const useCompanySearch = (bin: string) => {
   return useQuery({

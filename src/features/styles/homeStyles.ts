@@ -4,7 +4,7 @@ export const HomeStyles = (isDark: boolean) => ({
   header: {
     wrapper: "flex justify-between items-center px-1",
     title: "text-2xl font-bold tracking-tight",
-    select: `px-4 py-2 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-indigo-500/20 transition-colors ${
+    select: ` px-4 py-2 rounded-xl border text-sm outline-none focus:ring-2 focus:ring-indigo-500/20 transition-colors ${
       isDark ? "bg-slate-800 border-slate-700 text-white" : "bg-white border-slate-200 text-slate-900"
     }`,
   },

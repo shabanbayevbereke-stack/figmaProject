@@ -16,7 +16,8 @@ export function LanguageSwitcher() {
         value={i18n.language}
         onChange={(e) => i18n.changeLanguage(e.target.value)}
         className={`
-          appearance-none bg-transparent text-sm font-medium cursor-pointer outline-none
+          cursor-pointer
+          appearance-none bg-transparent text-sm font-medium  outline-none
           px-2 py-1 rounded-lg transition-all border
           ${isDark 
             ? "text-slate-200 border-slate-700 hover:bg-slate-800" 

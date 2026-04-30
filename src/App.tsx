@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { HomePage } from "./pages/HomePage/HomePage";
 import { EboutUsPage } from "./pages/EboutUsPage/EboutUsPage";
-import { ItemPage } from "./pages/ItemPage/ItemPage";
+import { DoctorPage } from "./pages/DoctorPage/DoctorPage";
 import { SellPage } from "./pages/SellPage/SellPage";
 import { UserPage } from "./pages/UserPage/UserPage";
 import { MainHeader } from "./features/MainHeader/MainHeader";
@@ -9,6 +9,7 @@ import { LoginPage } from "./pages/LoginPage/LoginPage";
 import { RegisterPage } from "./pages/RegisterPage/RegisterPage";
 import { ErrorPage } from "./pages/ErrorPage/ErrorPage";
 import { ProtectedRoute } from "./features/ProtectRouter";
+import { UserListPage } from "./pages/UserListPage/UserListPage";
 
 function App() {
   return (
@@ -20,9 +21,12 @@ function App() {
           <Route element={<MainHeader />}>
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<EboutUsPage />} />
-            <Route path="/item" element={<ItemPage />} />
             <Route path="/sell" element={<SellPage />} />
             <Route path="/user" element={<UserPage />} />
+            <Route element={<ProtectedRoute />}>
+              <Route path="/doctor" element={<DoctorPage />} />
+              <Route path="/userlist" element={<UserListPage />} />
+            </Route>
           </Route>
         </Route>
         <Route path="*" element={<ErrorPage />} />

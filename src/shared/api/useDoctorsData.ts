@@ -1,53 +1,32 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { apiInstance } from "./base";
 import type { AxiosError } from "axios";
+import type { CreateDoctorDto, Doctor } from "../types/CreateDoctorDto";
+import type { ApiResponse } from "../types/common";
 
-interface PaginatedResponse<T> {
-  data: T[];
-  records: number;
-  currentPage: number;
-  lastPage: number;
-  isAll: boolean;
-  loadedCount: number;
-}
-
-interface ApiResponse<T> {
-  isSuccess: boolean;
-  code: string;
-  title: string | null;
-  text: string | null;
-  data: PaginatedResponse<T>;
-  exception: unknown;
-}
-
-export interface Doctor {
-  id: string;
-  name: string | null;
-  specialization?: string;
-  experience?: number;
-  created: string;
-  createdBy: string;
-}
-
-export const useDoctorsData = () => {
-  return useQuery<Doctor[]>({
-    queryKey: ["doctors"],
+export const useDoctorsData = (currentPage: number, itemsPerPage: number) => {
+  return useQuery({
+    queryKey: ["doctors", currentPage, itemsPerPage],
     queryFn: async () => {
-      const response =
-        await apiInstance.get<ApiResponse<Doctor>>("/api/doctors");
+      const params = new URLSearchParams();
+      params.append("page", currentPage.toString());
+      params.append("rows", itemsPerPage.toString());
 
-      const doctorsArray = response.data.data.data;
+      const response = await apiInstance.get("/api/doctors", {
+        params: params,
+      });
 
-      return Array.isArray(doctorsArray) ? doctorsArray : [];
+      const serverPayload = response.data.data;
+
+      return {
+        doctors: Array.isArray(serverPayload.data) ? serverPayload.data : [],
+        totalRecords: serverPayload.records || 0,
+        totalPages: serverPayload.lastPage || 1,
+      };
     },
+    placeholderData: (prev) => prev,
   });
 };
-
-export interface CreateDoctorDto {
-  name: string;
-  specialization: string;
-  experience: number;
-}
 
 export const useCreateDoctor = () => {
   const queryClient = useQueryClient();

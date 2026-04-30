@@ -32,7 +32,7 @@ export function Cards({ item }: { item: number }) {
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           className={cn(
-            "rounded-lg px-5 py-2 text-sm font-medium transition-colors",
+            "rounded-lg px-5 py-2 text-sm font-medium transition-colors ",
             isDark
               ? "bg-blue-600 hover:bg-blue-500 text-white"
               : "bg-gray-900 hover:bg-gray-800 text-white",

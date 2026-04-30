@@ -1,25 +1,10 @@
 import { useMutation } from "@tanstack/react-query";
 import { apiInstance } from "./base";
 import { AxiosError } from "axios";
+import type { ApiErrorData } from "../types/common";
+import type { LoginCredentials, LoginResponse } from "../types/auth";
 
-export interface LoginCredentials {
-  login: string;
-  password?: string;
-}
 
-interface ApiErrorData {
-  message?: string;
-  code?: string;
-}
-
-interface LoginResponse {
-  code: string;
-  data: string;
-  isSuccess: boolean;
-  exception: string | null | Record<string, unknown>;
-  text: string | null;
-  title: string | null;
-}
 
 export const useLogin = () => {
   return useMutation<LoginResponse, AxiosError<ApiErrorData>, LoginCredentials>(

@@ -23,7 +23,7 @@ export function CustomTable() {
 
   const isDark = resolvedTheme === "dark";
 
-  const selectStyles = `p-2.5 rounded-xl border transition-all outline-none focus:ring-2 ring-blue-500/50 ${
+  const selectStyles = ` p-2.5 rounded-xl border transition-all outline-none focus:ring-2 ring-blue-500/50 ${
     isDark
       ? "bg-slate-800 border-slate-700 text-white"
       : "bg-white border-gray-200 text-gray-900"

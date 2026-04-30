@@ -29,7 +29,7 @@ export function UserPage() {
             <p className="text-indigo-500 font-medium">{"Пользователь"}</p>
           </div>
 
-          <button className="mb-2 flex items-center gap-2 px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-xl transition-colors text-sm font-medium">
+          <button className=" mb-2 flex items-center gap-2 px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-xl transition-colors text-sm font-medium">
             <FiEdit3 /> Редактировать
           </button>
         </div>
@@ -62,7 +62,7 @@ export function UserPage() {
                   </p>
                 </div>
               </div>
-              <button className="text-xs font-bold text-indigo-500 hover:underline">
+              <button className=" text-xs font-bold text-indigo-500 hover:underline">
                 Изменить
               </button>
             </div>

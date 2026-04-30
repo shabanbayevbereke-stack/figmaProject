@@ -42,7 +42,7 @@ export function RegisterPage() {
             </div>
           </div>
 
-          <button className="flex w-full items-center justify-center space-x-3 rounded-xl bg-[#2D2E2E] py-4 font-semibold text-white transition-all hover:bg-black focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:outline-none  peer-focus:ring-2">
+          <button className=" flex w-full items-center justify-center space-x-3 rounded-xl bg-[#2D2E2E] py-4 font-semibold text-white transition-all hover:bg-black focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:outline-none  peer-focus:ring-2">
             <div
               style={{
                 backgroundImage: `url(${googleImage})`,

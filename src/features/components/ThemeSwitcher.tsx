@@ -12,7 +12,7 @@ export function ThemeSwitcher() {
   return (
     <button
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className={`p-2 rounded-lg hover:ring-2 ring-gray-400 transition-all duration-300 ${isDark ? darkStyle : lightStyle}`}
+      className={` p-2 rounded-lg hover:ring-2 ring-gray-400 transition-all duration-300 ${isDark ? darkStyle : lightStyle}`}
     >
       {isDark ? (
         <Sun className="w-5 h-5 text-yellow-400" />
