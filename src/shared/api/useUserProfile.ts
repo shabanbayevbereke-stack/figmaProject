@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { apiInstance } from "./base";
+import { apiInstance } from "./axiosInstance";
 import type { UserProfile, UserProfileResponse } from "../types/user";
 
 

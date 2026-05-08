@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { apiEgov } from "./base";
+import { apiEgov } from "./axiosInstance";
 import type { CompanyData } from "../types/company";
 
 

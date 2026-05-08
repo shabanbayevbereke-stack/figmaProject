@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { apiInstance } from "./base";
+import { apiInstance } from "./axiosInstance";
 import { AxiosError } from "axios";
 import type { ApiErrorData } from "../types/common";
 import type { LoginCredentials, LoginResponse } from "../types/auth";

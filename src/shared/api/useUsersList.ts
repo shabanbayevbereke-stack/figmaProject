@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { apiInstance } from "./base";
+import { apiInstance } from "./axiosInstance";
 import type { User } from "../types/user";
 
 export const useUsersList = () => {

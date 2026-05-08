@@ -33,7 +33,7 @@ export function SideBar() {
     { to: "/about", label: "О нас", accessedRoles: ["root"] },
     { to: "/user", label: "Профиль", accessedRoles: ["root"] },
     { to: "/doctor", label: "Доктора", accessedRoles: ["root"] },
-    { to: "/item", label: "Товары", accessedRoles: ["root"] },
+    { to: "/item", label: "Дисконт", accessedRoles: ["root"] },
     { to: "/userlist", label: "Пользователи", accessedRoles: ["root"] },
   ];
 

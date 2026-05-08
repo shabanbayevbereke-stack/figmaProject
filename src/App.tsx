@@ -10,16 +10,20 @@ import { RegisterPage } from "./pages/RegisterPage/RegisterPage";
 import { ErrorPage } from "./pages/ErrorPage/ErrorPage";
 import { ProtectedRoute } from "./features/ProtectRouter";
 import { UserListPage } from "./pages/UserListPage/UserListPage";
+import { Toaster } from "sonner";
+import { DiscountManager } from "./pages/Toaster/DiscountManager";
 
 function App() {
   return (
     <>
+      <Toaster richColors position="top-right" />
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route element={<ProtectedRoute />}>
           <Route element={<MainHeader />}>
             <Route path="/" element={<HomePage />} />
+            <Route path="/item" element={<DiscountManager />} />
             <Route path="/about" element={<EboutUsPage />} />
             <Route path="/sell" element={<SellPage />} />
             <Route path="/user" element={<UserPage />} />
